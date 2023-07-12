@@ -1,0 +1,5 @@
+# Directorios
+build/
+
+# Archivos
+*.swp

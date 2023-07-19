@@ -107,6 +107,10 @@ int main(int argc, char **argv)
 
 				// TODO: Guardamos el frame como imagen
 			}
+			else {
+				// Puntos no detectados
+				cout << "No se detectaron puntos en la imagen, por favor tome otra foto." << endl;
+			}
 		}
 	}
 				
@@ -129,8 +133,14 @@ int main(int argc, char **argv)
 	cout << "\nMatriz de cámara: " << endl << cameraMatrix << endl;
 	cout << "\nCoeficientes de distorsión: " << endl << distCoeffs << endl;
 
+	// Guardamos parámetros de la cámara
+	cv::FileStorage fs("../camera_params.yml", cv::FileStorage::WRITE);
+	fs << "cameraMatrix" << cameraMatrix;
+	fs << "distCoeffs" << distCoeffs;
+
 
 	// Limpieza
+	fs.release();
 	cap.release();
 	cv::destroyAllWindows();
 	

@@ -1,3 +1,16 @@
+/*
+ *  Title: RPlidar example code
+ *  Author: Alfonso Toriz V.
+ *  
+ *  Description: Shows how to use the RPlidar SDK for the S1 Lidar sensor by SLAMTECH.
+ *  Work in progress...
+ *
+ *  TODO
+ *  1. Explore how data is stored in rplidar_response_measurement_node_hq_t
+ *  2. Try to set motor speed
+ *  3. Read and comment both examples in the sdk
+ */
+
 #include <iostream>
 #include <vector>
 #include <rplidar.h> // include the RPLidar SDK

@@ -5,8 +5,6 @@
  *  Description: Shows how to use the RPlidar SDK for the S1 Lidar sensor by SLAMTECH.
  *  Work in progress...
  *
- *  TODO
- *  1. Explore how data is stored in rplidar_response_measurement_node_hq_t:
  *
  *  typedef struct sl_lidar_response_measurement_node_hq_t
  *  {

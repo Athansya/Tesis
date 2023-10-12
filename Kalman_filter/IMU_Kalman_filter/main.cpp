@@ -4,7 +4,8 @@
 
 #include "kalman.hpp"
 
-const int NUMBER_OF_MEASUREMENTS = 10000;
+const int NUMBER_OF_MEASUREMENTS = 1000;
+// TODO CORROBORAR CON LOS EJEMPLOS DEL LIBRO
 
 int main(int argc, char* argv[])
 {
@@ -36,7 +37,7 @@ int main(int argc, char* argv[])
          0, 1, dt,
          0, 0, 1;
 
-    C << 0, 0, 1; // Just taking the acceleration.
+    C << 0, 0, 1; // Just taking the acceleration. Observation matrix.
 
     // Covariance matrix Q obtained from the transition matrix
     Q << dt4/4, dt3/3, dt2/2,
@@ -57,9 +58,12 @@ int main(int argc, char* argv[])
     // P << 10000, 10000, 1,
         //  10000, 10000, 1000,
         //  1, 1000, 1;
-    P << 100, 5, 2,
-         5, 1000, 10,
-         2, 10, 20;
+    // P << 100, 5, 2,
+        //  5, 1000, 10,
+        //  2, 10, 20;
+    P << 100, 0, 0,
+         0, 100, 0,
+         0, 0, 100;
 
     std::cout << "A: \n" << A << std::endl;
     std::cout << "C: \n" << C << std::endl;

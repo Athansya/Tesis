@@ -4,8 +4,8 @@
 
 #include "kalman.hpp"
 
-const int NUMBER_OF_MEASUREMENTS = 1000;
-// TODO CORROBORAR CON LOS EJEMPLOS DEL LIBRO
+const int NUMBER_OF_MEASUREMENTS = 10000;
+const float BAND_STOP_MEASUREMENT_FILTER = 0.5;
 
 int main(int argc, char* argv[])
 {
@@ -107,7 +107,16 @@ int main(int argc, char* argv[])
         {
             rs2_vector accel_data = accel_frame.get_motion_data();
           //   rs2_vector gyro_data = gyro_frame.get_motion_data();
-            measurements(measurements.size() - 1) = accel_data.x;
+            // std::cout << accel_data.x << std::endl;
+            // FILTER
+            if (accel_data.x >= -BAND_STOP_MEASUREMENT_FILTER && accel_data.x <= BAND_STOP_MEASUREMENT_FILTER)
+            {
+                measurements(measurements.size() - 1) = 0;
+            }
+            else
+            {
+                measurements(measurements.size() - 1) = accel_data.x;
+            }
           //   measurements(measurements.size() - 1) = gyro_data.z;
             measurements.conservativeResize(measurements.size() + 1);
         }

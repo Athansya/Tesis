@@ -20,7 +20,6 @@
 #include "kalman.hpp"
 
 const int NUMBER_OF_MEASUREMENTS = 1000;
-// TODO CORROBORAR CON LOS EJEMPLOS DEL LIBRO
 
 int main(int argc, char* argv[])
 {

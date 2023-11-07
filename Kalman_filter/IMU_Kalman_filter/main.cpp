@@ -4,8 +4,10 @@
 
 #include "kalman.hpp"
 
-const int NUMBER_OF_MEASUREMENTS = 10000;
-const float BAND_STOP_MEASUREMENT_FILTER = 0.5;
+const int NUMBER_OF_MEASUREMENTS = 1000;
+const float BAND_STOP_MEASUREMENT_FILTER = 0.01;
+// TODO ESTABLECER UN BIAS PARA CADA EJE PARA RESTARLO
+// const float BIAS_X = 
 
 int main(int argc, char* argv[])
 {
@@ -70,6 +72,8 @@ int main(int argc, char* argv[])
     std::cout << "Q: \n" << Q << std::endl;
     std::cout << "R: \n" << R << std::endl;
     std::cout << "P: \n" << P << std::endl;
+
+    // std::getchar();
     
     // Construct the filter
     KalmanFilter kf(dt,A, C, Q, R, P);
@@ -109,6 +113,7 @@ int main(int argc, char* argv[])
           //   rs2_vector gyro_data = gyro_frame.get_motion_data();
             // std::cout << accel_data.x << std::endl;
             // FILTER
+            // TODO GUARDAR LA MEDICION ANTERIOR Y RESTARLE LA ACTUAL, SI ESA DIFERENCIA ES PEQUEÑA PONERLE MANTENER LA ANTERIOR 
             if (accel_data.x >= -BAND_STOP_MEASUREMENT_FILTER && accel_data.x <= BAND_STOP_MEASUREMENT_FILTER)
             {
                 measurements(measurements.size() - 1) = 0;

@@ -44,6 +44,7 @@ void KalmanFilter::update(const Eigen::VectorXd& y) {
   * Extrapolation Equations
   */ 
   // Predicted state
+  // TODO IMPRIMIR x_hat_new y x_hat PARA VER EL CAMBIO
   x_hat_new = A * x_hat;
   // Predicted error covariance
   P = A*P*A.transpose() + Q;
@@ -54,7 +55,7 @@ void KalmanFilter::update(const Eigen::VectorXd& y) {
   * Update equations
   */
   // Estimated state
-  x_hat_new += K * (y - C*x_hat_new); 
+  x_hat_new += K * (y - C*x_hat_new);  // Añadir corrección cuando a = 0
   // Estimated error covariance
   P = (I - K*C)*P*(I - K*C).transpose() + K*R*K.transpose();
   // std::cout << "2nd P: \n" << P << std::endl;
